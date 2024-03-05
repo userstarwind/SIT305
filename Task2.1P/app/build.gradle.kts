@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.task21p"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.task21p"
