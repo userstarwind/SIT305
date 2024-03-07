@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private IUnitConverter converter=new LengthConverter();
@@ -34,16 +37,19 @@ public class MainActivity extends AppCompatActivity {
         Button convertButton=findViewById(R.id.convertButton);
         EditText initValue=findViewById(R.id.initValue);
 
-        convertButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Double value = Double.parseDouble(initValue.getText().toString());
-                Spinner spinnerFromUnit=findViewById(R.id.spinnerFromUnit);
-                Spinner spinnerToUnit=findViewById(R.id.spinnerToUnit);
-                double calculatedAnswer= converter.convert(value, spinnerFromUnit.getSelectedItem().toString(), spinnerToUnit.getSelectedItem().toString());
-                TextView answer=findViewById(R.id.answer);
-                answer.setText(String.format("Answer: %.10f", calculatedAnswer));
-            }
+        convertButton.setOnClickListener(v-> {
+                try {
+                    Double value = Double.parseDouble(initValue.getText().toString());
+                    Spinner spinnerFromUnit=findViewById(R.id.spinnerFromUnit);
+                    Spinner spinnerToUnit=findViewById(R.id.spinnerToUnit);
+                    Double calculatedAnswer= converter.convert(value, spinnerFromUnit.getSelectedItem().toString(), spinnerToUnit.getSelectedItem().toString());
+                    TextView answer=findViewById(R.id.answer);
+                    answer.setText(String.format(Locale.US,"Answer: %.10f", calculatedAnswer));
+                } catch (NumberFormatException e) {
+                    showToast("Please input valid number");
+                } catch (Exception e) {
+                    showToast("Unknown Error");
+                }
         });
     }
 
@@ -70,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, arrayResourceId, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 }
 

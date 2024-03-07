@@ -2,7 +2,7 @@ package com.example.task21p;
 
 public class TemperatureConverter implements IUnitConverter {
     @Override
-    public double convert(double value, String fromUnit, String toUnit) {
+    public Double convert(Double value, String fromUnit, String toUnit) {
         if ("Celsius".equals(fromUnit)) {
             if ("Fahrenheit".equals(toUnit)) {
                 return value * 9 / 5 + 32;

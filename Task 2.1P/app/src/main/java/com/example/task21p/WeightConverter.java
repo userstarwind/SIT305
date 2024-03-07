@@ -2,7 +2,7 @@ package com.example.task21p;
 
 public class WeightConverter implements IUnitConverter {
     @Override
-    public double convert(double value, String fromUnit, String toUnit) {
+    public Double convert(Double value, String fromUnit, String toUnit) {
         double valueInGrams;
         switch (fromUnit) {
             case "pound":
