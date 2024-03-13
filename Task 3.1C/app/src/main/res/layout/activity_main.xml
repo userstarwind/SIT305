@@ -50,12 +50,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:background="@drawable/edittext_username"
-                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
                 android:ems="10"
-                android:inputType="text"
                 android:hint="Your Name"
-                android:textSize="16sp"/>
+                android:inputType="text"
+                android:padding="10dp"
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -64,10 +64,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#B4B3B7"
         android:text="Start Quiz"
-        android:textSize="18sp"
-        android:backgroundTint="#FF6200EE"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#050505"
+        android:textSize="18sp" />
 </LinearLayout>
 
 
