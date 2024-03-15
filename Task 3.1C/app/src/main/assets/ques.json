@@ -1,0 +1,57 @@
+[
+  {
+    "id": 0,
+    "title": "Android Lifecycle",
+    "content": "Which Android lifecycle method is called when an activity is first created?",
+    "options": [
+      "onStart()",
+      "onCreate()",
+      "onResume()"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 1,
+    "title": "Android Intents",
+    "content": "Which method is used to start a new activity in Android?",
+    "options": [
+      "startActivity()",
+      "onCreate()",
+      "launchActivity()"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 2,
+    "title": "Android UI",
+    "content": "Which XML attribute specifies the layout width of a view in Android?",
+    "options": [
+      "android:layout_width",
+      "android:width",
+      "android:layout_size"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 3,
+    "title": "Android Services",
+    "content": "Which of the following is NOT a type of Android Service?",
+    "options": [
+      "IntentService",
+      "BoundService",
+      "UnboundService"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 4,
+    "title": "Android Storage",
+    "content": "Which class is used for storing simple key-value pairs in Android?",
+    "options": [
+      "SharedPreferences",
+      "SQLiteOpenHelper",
+      "FileStorage"
+    ],
+    "answer": 0
+  }
+]
