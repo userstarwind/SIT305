@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +47,8 @@ public class EditTaskActivity extends AppCompatActivity {
             taskDescriptionEditText.setText(currentTask.getDescription());
             taskDueDateTextView.setText("Due Date: " + currentTask.getDueDate().toString());
         } else {
-            currentTask = new Task(-1, "", "", null);
+            currentTask = new Task(-1, "", "", LocalDate.now());
+            taskDueDateTextView.setText("Due Date: " + currentTask.getDueDate().toString());
         }
     }
 
@@ -71,19 +73,29 @@ public class EditTaskActivity extends AppCompatActivity {
 
 
     public void saveTaskContent(View view) {
+        String title = taskTitleEditText.getText().toString();
+        String description = taskDescriptionEditText.getText().toString();
+
+        if (title.isEmpty() || description.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (!whetherNewTask) {
-            currentTask.setTitle(taskTitleEditText.getText().toString());
-            currentTask.setDescription(taskDescriptionEditText.getText().toString());
+            currentTask.setTitle(title);
+            currentTask.setDescription(description);
             db.updateTask(currentTask);
         } else {
-            currentTask.setTitle(taskTitleEditText.getText().toString());
-            currentTask.setDescription(taskDescriptionEditText.getText().toString());
+            currentTask.setTitle(title);
+            currentTask.setDescription(description);
             db.addTask(currentTask);
         }
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
+
 
     public void deleteTask(View view) {
         db.deleteTask(currentTask);
