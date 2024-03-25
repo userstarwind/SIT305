@@ -2,46 +2,57 @@ package com.example.newsapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NewsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class NewsFragment extends Fragment {
+    private GestureDetector gestureDetector;
+    private int newsImageId;
+    private String newsTitle;
+    private String newsContent;
+    private List<News> newsList;
+    private ImageView selectedNewsImageView;
+    private TextView selectedNewsTitleTextView;
+    private TextView selectedNewsContentTextView;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private int[] newsImageIds = {R.drawable.news_image_1, R.drawable.news_image_2, R.drawable.news_image_3, R.drawable.news_image_4};
+    private String[] newsTitles = {"Fans left horrified as F1 driver plea ignored",
+            "World braces as Princess set to disappear",
+            "Man dead after jumping off popular bridge",
+            "Thousands of babies eligible for new jab"};
+    private String[] newsContents = {"Fans have been left in disbelief after a star’s pleas for help fell on deaf ears following a devastating Australian Grand Prix crash.",
+            "A day after the Princess of Wales revealed she has cancer, Kensington Palace is poised to try to pull off something wholly unprecedented.",
+            "The body of a tourist has been recovered after he tragically died while jumping from a popular tourist spot with a group of people."
+            , "Thousands of babies who are most at risk from a worrying virus will be eligible for a new vaccination rollout."};
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private RecyclerView relatedStoryRecyclerView;
     public NewsFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NewsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static NewsFragment newInstance(String param1, String param2) {
+
+    public static NewsFragment newInstance(int newsImageId, String newsTitle, String newsContent) {
         NewsFragment fragment = new NewsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt("NEWS_IMAGE_ID", newsImageId);
+        args.putString("NEWS_TITLE", newsTitle);
+        args.putString("NEWS_CONTENT", newsContent);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,15 +61,46 @@ public class NewsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            newsImageId = getArguments().getInt("NEWS_IMAGE_ID");
+            newsTitle = getArguments().getString("NEWS_TITLE");
+            newsContent = getArguments().getString("NEWS_CONTENT");
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_news, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        selectedNewsImageView = view.findViewById(R.id.selectedNewsImageView);
+        selectedNewsTitleTextView = view.findViewById(R.id.selectedNewsTitleTextView);
+        selectedNewsContentTextView = view.findViewById(R.id.selectedNewsContentTextView);
+        relatedStoryRecyclerView=view.findViewById(R.id.relatedStoryRecyclerView);
+        newsList = new ArrayList<>();
+        for(int i = 0; i < newsImageIds.length; i++) {
+            newsList.add(new News(newsImageIds[i], newsTitles[i], newsContents[i]));
+        }
+        RecyclerView.LayoutManager relatedStoryManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        relatedStoryRecyclerView.setLayoutManager(relatedStoryManager);
+        RelatedStoryRecyclerViewAdapter relatedStoryAdapter = new RelatedStoryRecyclerViewAdapter(newsList, getActivity(), position -> {
+            News clickedNews = newsList.get(position);
+            selectedNewsImageView.setImageResource(clickedNews.getId());
+            selectedNewsTitleTextView.setText(clickedNews.getTitle());
+            selectedNewsContentTextView.setText(clickedNews.getContent());
+        });
+
+        relatedStoryRecyclerView.setAdapter(relatedStoryAdapter);
+        selectedNewsImageView.setImageResource(newsImageId);
+        selectedNewsTitleTextView.setText(newsTitle);
+        selectedNewsContentTextView.setText(newsContent);
+
+
     }
 }

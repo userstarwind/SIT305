@@ -6,14 +6,14 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/newsImage"
+        android:id="@+id/newsImageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:contentDescription="item_image_desc"
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/newsTitle"
+        android:id="@+id/newsTitleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
@@ -23,10 +23,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/newsContent"
+        android:id="@+id/newsContentTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="newsContent"
         android:textSize="16sp" />
 
 </LinearLayout>
