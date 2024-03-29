@@ -1,7 +1,7 @@
 package com.example.itubeapp;
 
-public class Song {
-    private int SID;
+public class Video {
+    private int VID;
     private int UID;
     private String URL;
 
@@ -10,14 +10,15 @@ public class Song {
         return UID;
     }
 
-    public Song(int SID, int UID, String URL) {
-        this.SID = SID;
+
+    public Video(int VID, int UID, String URL) {
+        this.VID = VID;
         this.UID = UID;
         this.URL = URL;
     }
 
-    public int getSID() {
-        return SID;
+    public int getVID() {
+        return VID;
     }
 
     public String getURL() {

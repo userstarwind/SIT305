@@ -5,14 +5,18 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -101,6 +105,32 @@ public class NewsFragment extends Fragment {
         selectedNewsTitleTextView.setText(newsTitle);
         selectedNewsContentTextView.setText(newsContent);
 
+        gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                if (e2.getX() - e1.getX() > 50 && Math.abs(velocityX) > 0) {
+                    FragmentManager fragmentManager = NewsFragment.this.getParentFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.remove(NewsFragment.this);
+                    transaction.commit();
+                    showMainContentViews();
+                    return true;
+                }
+                return super.onFling(e1, e2, velocityX, velocityY);
+            }
+        });
 
+        LinearLayout selectedNewsLinearLayout = view.findViewById(R.id.selectedNewsLinearLayout);
+        selectedNewsLinearLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                gestureDetector.onTouchEvent(event);
+                return true;
+            }
+        });
+
+    }
+    private void showMainContentViews() {
+        getActivity().findViewById(R.id.mainContent).setVisibility(View.VISIBLE);
     }
 }

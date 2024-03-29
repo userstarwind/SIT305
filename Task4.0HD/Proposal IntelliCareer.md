@@ -24,7 +24,7 @@ The heart of IntelliCareer, where the magic of job discovery happens. Users navi
 
 Here, users can upload their resumes to receive constructive feedback from the AI. The Llama 2 model evaluates the resumes in-depth, identifying areas for improvement and suggesting enhancements to increase their appeal to potential employers. Additionally, this page serves as a hub for users to either publish new job positions or manage their existing postings, facilitating a seamless recruitment process.
 
-<img src="/Users/starwind/Documents/SIT305/Task4.0HD/IntelliCareerUIDesign.jpg" alt="IntelliCareerUIDesign" style="zoom:150%;" />
+![](D:\SIT305\Task4.0HD\IntelliCareerUIDesign.jpg)
 
 ## Technology Stack
 
@@ -36,12 +36,12 @@ Large Language Model: Llama2
 
 Database: Google Firebase
 
-
+![](D:\SIT305\Task4.0HD\applicationStructure.jpg)
 
 ## Development Methodology
 
-For the development of IntelliCareer, it plans to adopt an Agile methodology. This iterative approach allows for continuous feedback and adjustments throughout the development process, ensuring the platform remains responsive to user needs and technological advancements. Agile's flexibility is particularly suited to projects like IntelliCareer, where user experience and AI integration are key, and evolving requirements are anticipated.
+For the development of IntelliCareer, it plans to adopt an Agile methodology. This iterative approach allows for continuous feedback and adjustments throughout the development process, ensuring the platform remains responsive to user needs and technological advancements. Agile's flexibility suits projects like IntelliCareer, where user experience and AI integration are key, and evolving requirements are anticipated.
 
 ## Conclusion
 
-IntelliCareer leverages AI, specifically Llama 2, to redefine the job search experience, offering personalized resume feedback, precise job matching, and the latest industry insights. Its innovative approach promises to streamline the recruitment process, making job searching more efficient and effective.
+IntelliCareer leverages AI, specifically Llama 2, to redefine the job search experience, offering personalised resume feedback, precise job matching, and the latest industry insights. Its innovative approach promises to streamline the recruitment process, making job searching more efficient and effective.
