@@ -28,7 +28,7 @@ public class QuizActivity extends AppCompatActivity {
     TextView questionTitleTextView;
     TextView questionContentTextView;
     Button[] questionOptionButtons;
-    Button sumbitButton;
+    Button submitButton;
     Integer selectedAnswer;
     Boolean isAnswerSubmitted;
     Integer score;
@@ -91,7 +91,7 @@ public class QuizActivity extends AppCompatActivity {
         questionOptionButtons[0] = findViewById(R.id.questionFirstOptionButton);
         questionOptionButtons[1] = findViewById(R.id.questionSecondOptionButton);
         questionOptionButtons[2] = findViewById(R.id.questionThirdOptionButton);
-        sumbitButton = findViewById(R.id.submitButton);
+        submitButton = findViewById(R.id.submitButton);
         isAnswerSubmitted = false;
         score = 0;
         updateProgress();
@@ -122,7 +122,7 @@ public class QuizActivity extends AppCompatActivity {
                 view.setBackgroundResource(R.drawable.btn_submit_answer);
             });
         }
-        sumbitButton.setOnClickListener(view -> {
+        submitButton.setOnClickListener(view -> {
             if (selectedAnswer == null) {
                 Toast.makeText(this, "Please select your answer first", Toast.LENGTH_SHORT).show();
                 return;
@@ -131,7 +131,7 @@ public class QuizActivity extends AppCompatActivity {
                 try {
                     showQuestionAnswer();
                     whetherAllowAnswer(false);
-                    sumbitButton.setText("Next");
+                    submitButton.setText("Next");
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -155,7 +155,7 @@ public class QuizActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
-                sumbitButton.setText("Submit");
+                submitButton.setText("Submit");
             }
             isAnswerSubmitted = !isAnswerSubmitted;
         });

@@ -2,12 +2,11 @@ package com.example.quizapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class MakeUtil {
+public class MuskUtil {
     public static AlertDialog showProgressDialog(final String message, Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         LayoutInflater inflater = activity.getLayoutInflater();
@@ -15,7 +14,7 @@ public class MakeUtil {
         builder.setView(dialogView);
         builder.setCancelable(false);
 
-        TextView textView = dialogView.findViewById(R.id.progressText);
+        TextView textView = dialogView.findViewById(R.id.dialog_progress_text);
         textView.setText(message);
 
         AlertDialog dialog = builder.create();

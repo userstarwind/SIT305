@@ -113,7 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             cursor.getInt(idIndex),
                             cursor.getString(titleIndex),
                             cursor.getString(descriptionIndex),
-                            LocalDate.parse(cursor.getString(dueDateIndex)) // 确保你的日期字符串格式正确
+                            LocalDate.parse(cursor.getString(dueDateIndex))
                     );
                     taskList.add(task);
                 }
