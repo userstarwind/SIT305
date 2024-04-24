@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "833449906504",
+    "project_id": "sit305-3475c",
+    "storage_bucket": "sit305-3475c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833449906504:android:2a67aa26ae0b17eea5e37d",
+        "android_client_info": {
+          "package_name": "com.example.intellicareer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAShdmxwzQo6nFrM2qlljbnefCSu6PV6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
