@@ -16,9 +16,9 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="Publish Advert"
         app:theme="@style/ToolbarTheme"
-        app:titleTextColor="@color/white"/>
+        app:title="Publish Advert"
+        app:titleTextColor="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -122,7 +122,7 @@
             android:background="@color/white"
             android:gravity="top|start"
             android:maxLines="10"
-            android:minLines="8"
+            android:minLines="6"
             android:textSize="20sp" />
 
         <TextView
@@ -131,8 +131,8 @@
             android:layout_height="wrap_content"
             android:text="Date: __"
             android:textSize="20dp"
-            android:textStyle="bold"
-            />
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold" />
 
         <android.widget.Button
             android:id="@+id/select_date_button"
@@ -146,33 +146,56 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/selected_location_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Location:"
+            android:text="Location: __"
             android:textSize="20sp"
+            android:layout_marginBottom="10dp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/publish_location_edit_text"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@color/white"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content">
 
-        <android.widget.Button
-            android:id="@+id/publish_advert_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_default"
-            android:onClick="publishAdvert"
-            android:text="Publish"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <android.widget.Button
+                android:id="@+id/select_location_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_default"
+                android:onClick="selectLocation"
+                android:text="Select Location"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <android.widget.Button
+                android:id="@+id/get_current_location_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_default"
+                android:onClick="getCurrentLocation"
+                android:text="Current Location"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
 
     </LinearLayout>
+
+    <android.widget.Button
+        android:id="@+id/publish_advert_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:background="@drawable/btn_default"
+        android:onClick="publishAdvert"
+        android:text="Publish"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </LinearLayout>
