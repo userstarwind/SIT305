@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.example.task81c;
 
 import android.app.Activity;
 import android.app.AlertDialog;

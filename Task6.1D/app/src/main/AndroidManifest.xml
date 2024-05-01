@@ -29,12 +29,6 @@
             android:name=".QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-        <activity
-            android:name=".BaseActivity"
-            android:exported="false" />
-        <activity
             android:name=".InterestActivity"
             android:exported="false" />
         <activity
