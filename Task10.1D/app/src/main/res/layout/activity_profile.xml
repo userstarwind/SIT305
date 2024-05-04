@@ -17,6 +17,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:title="Your Profile"
+        app:theme="@style/ToolbarStyle"
         app:titleTextColor="@color/white" />
 
     <LinearLayout
@@ -38,16 +39,17 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/profile_fullname_text_view"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center|start"
-                    android:text="UserName"
+                    android:text="FullName"
                     android:textSize="26sp"
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/profile_image_view"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     tools:srcCompat="@tools:sample/avatars" />

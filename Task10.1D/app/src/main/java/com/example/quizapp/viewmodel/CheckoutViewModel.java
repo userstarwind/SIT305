@@ -20,10 +20,7 @@ import com.example.quizapp.util.PaymentsUtil;
 
 public class CheckoutViewModel extends AndroidViewModel {
 
-    // A client for interacting with the Google Pay API.
     private final PaymentsClient paymentsClient;
-
-    // LiveData with the result of whether the user can pay using Google Pay
     private final MutableLiveData<Boolean> _canUseGooglePay = new MutableLiveData<>();
     public final LiveData<Boolean> canUseGooglePay = _canUseGooglePay;
 
@@ -34,10 +31,6 @@ public class CheckoutViewModel extends AndroidViewModel {
         fetchCanUseGooglePay();
     }
 
-    /**
-     * Determine the user's ability to pay with a payment method supported by your app and display
-     * a Google Pay payment button.
-     */
     private void fetchCanUseGooglePay() {
         final JSONObject isReadyToPayJson = PaymentsUtil.getIsReadyToPayRequest();
         if (isReadyToPayJson == null) {
@@ -45,8 +38,7 @@ public class CheckoutViewModel extends AndroidViewModel {
             return;
         }
 
-        // The call to isReadyToPay is asynchronous and returns a Task. We need to provide an
-        // OnCompleteListener to be triggered when the result of the call is known.
+
         IsReadyToPayRequest request = IsReadyToPayRequest.fromJson(isReadyToPayJson.toString());
         Task<Boolean> task = paymentsClient.isReadyToPay(request);
         task.addOnCompleteListener(
@@ -60,13 +52,6 @@ public class CheckoutViewModel extends AndroidViewModel {
                 });
     }
 
-    /**
-     * Creates a Task that starts the payment process with the transaction details included.
-     *
-     * @param priceCents the price to show on the payment sheet.
-     * @return a Task with the payment information.
-     * )
-     */
     public Task<PaymentData> getLoadPaymentDataTask(final long priceCents) {
         JSONObject paymentDataRequestJson = PaymentsUtil.getPaymentDataRequest(priceCents);
         if (paymentDataRequestJson == null) {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "769606775010",
+    "project_id": "sit305taskd",
+    "storage_bucket": "sit305taskd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769606775010:android:ccb2ec089c4379d23baebb",
+        "android_client_info": {
+          "package_name": "com.example.quizapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiwDwbgEM0s6gVgCRV-fCS1hGoJjpEP34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

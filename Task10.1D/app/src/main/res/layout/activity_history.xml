@@ -10,12 +10,13 @@
     tools:context=".HistoryActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+        android:id="@+id/history_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:title="History"
+        app:theme="@style/ToolbarStyle"
         app:titleTextColor="@color/white"
         android:theme="?attr/actionBarTheme" />
     <LinearLayout
@@ -25,6 +26,7 @@
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/history_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
