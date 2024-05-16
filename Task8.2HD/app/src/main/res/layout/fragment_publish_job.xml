@@ -1,14 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".ui.dashboard.PublishJobFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TextView
+        android:id="@+id/publish_banner_text_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Job Details"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/publish_banner2_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="44dp"
+        android:text="Icon:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/publish_banner_text_view" />
+
+    <ImageView
+        android:id="@+id/publish_icon_image_view"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="16dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toEndOf="@+id/publish_banner2_text_view"
+        app:layout_constraintTop_toBottomOf="@id/publish_banner_text_view" />
+
+    <EditText
+        android:id="@+id/publish_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_border"
+        android:ems="10"
+        android:hint="Job Title"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/publish_icon_image_view"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <EditText
+        android:id="@+id/publish_skills_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_border"
+        android:ems="10"
+        android:hint="Skills"
+        android:inputType="text"
+
+        app:layout_constraintTop_toBottomOf="@id/publish_title_text_view"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/publish_min_salary_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_border"
+        android:ems="10"
+        android:hint="Min Salary (AUD/per month)"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/publish_skills_text_view"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/publish_max_salary_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_border"
+        android:ems="10"
+        android:hint="Max Salary (AUD/per month)"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/publish_min_salary_text_view"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/publish_description_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="10"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/input_border"
+        android:gravity="top|start"
+        android:hint="Job Description"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/publish_button"
+        app:layout_constraintTop_toBottomOf="@id/publish_max_salary_text_view"
+
+        />
+
+    <android.widget.Button
+        android:id="@+id/publish_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_default"
+        android:layout_marginTop="20dp"
+        android:text="Publish"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/publish_description_text_view" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>

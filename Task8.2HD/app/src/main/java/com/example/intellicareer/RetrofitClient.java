@@ -1,4 +1,4 @@
-package com.example.task81c;
+package com.example.intellicareer;
 
 import java.util.concurrent.TimeUnit;
 

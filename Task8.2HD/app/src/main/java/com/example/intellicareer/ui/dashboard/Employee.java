@@ -1,8 +1,37 @@
 package com.example.intellicareer.ui.dashboard;
 
-public class Employer {
-    String name;
-    String email;
-    String CVUrl;
-    
+public class Employee {
+    private String name;
+    private String email;
+    private String CVUrl;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCVUrl() {
+        return CVUrl;
+    }
+
+    public void setCVUrl(String CVUrl) {
+        this.CVUrl = CVUrl;
+    }
+
+    public Employee(String name, String email, String CVUrl) {
+        this.name = name;
+        this.email = email;
+        this.CVUrl = CVUrl;
+    }
 }

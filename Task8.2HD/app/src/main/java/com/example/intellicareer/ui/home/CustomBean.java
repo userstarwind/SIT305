@@ -1,9 +1,8 @@
-package com.example.intellicareer;
+package com.example.intellicareer.ui.home;
 
 public class CustomBean {
     private int imageRes;
     private String describe;
-
     public CustomBean(int imageRes, String describe) {
         this.imageRes = imageRes;
         this.describe = describe;

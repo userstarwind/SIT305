@@ -1,4 +1,4 @@
-package com.example.task81c;
+package com.example.intellicareer;
 
 public class ServiceResponse {
     Boolean success;

@@ -2,65 +2,93 @@ package com.example.intellicareer.ui.dashboard;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.intellicareer.AIServiceAgent;
+import com.example.intellicareer.DBHelper;
+import com.example.intellicareer.MyApplication;
 import com.example.intellicareer.R;
+import com.example.intellicareer.ServiceResponse;
+import com.example.intellicareer.databinding.FragmentDashboardBinding;
+import com.example.intellicareer.databinding.FragmentEvaluationBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EvaluationFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class EvaluationFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public EvaluationFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EvaluationFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EvaluationFragment newInstance(String param1, String param2) {
-        EvaluationFragment fragment = new EvaluationFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private FragmentEvaluationBinding binding;
+    private List<Message> messageList;
+    private MyApplication myApplication;
+    private DBHelper db;
+    private AIServiceAgent aiServiceAgent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        myApplication = (MyApplication) getActivity().getApplication();
+        db = myApplication.getDbHelper();
+        messageList = new ArrayList<>();
+        messageList.add(new Message("Left", "Welcome " + myApplication.getCurrentUser().getDisplayName() + "! Here is an evaluation of your CV."));
+        messageList.add(new Message("Left", myApplication.getCVEvaluation()));
+        aiServiceAgent=new AIServiceAgent();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_evaluation, container, false);
+        binding = FragmentEvaluationBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.evaluationRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.evaluationRecyclerView.setAdapter(new ChatAdapter(messageList));
+        binding.evaluationSendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String messageContent = binding.evaluationMessageEditText.getText().toString();
+                if (!messageContent.isEmpty()) {
+                    aiServiceAgent.fetchOtherResponse(getActivity(), myApplication.getCVContent(), messageContent, new Callback<ServiceResponse>() {
+                        @Override
+                        public void onResponse(Call<ServiceResponse> call, Response<ServiceResponse> response) {
+                            if (response.isSuccessful()) {
+                                ServiceResponse serviceResponse = response.body();
+                                messageList.add(new Message("Right",messageContent));
+                                messageList.add(new Message("Left",serviceResponse.getMessage()));
+                                binding.evaluationRecyclerView.getAdapter().notifyDataSetChanged();
+                                binding.evaluationRecyclerView.smoothScrollToPosition(messageList.size() - 1);
+                                binding.evaluationMessageEditText.setText("");
+                            } else {
+                                Toast.makeText(getActivity(), "Error sending message", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ServiceResponse> call, Throwable throwable) {
+                            Toast.makeText(getActivity(), "Error sending message", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getActivity(), "Please enter message", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 }

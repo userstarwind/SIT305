@@ -1,8 +1,9 @@
-package com.example.intellicareer;
+package com.example.intellicareer.ui.home;
 
 
 import android.widget.TextView;
 
+import com.example.intellicareer.R;
 import com.zhpan.bannerview.BaseBannerAdapter;
 import com.zhpan.bannerview.BaseViewHolder;
 

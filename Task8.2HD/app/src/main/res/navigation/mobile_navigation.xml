@@ -9,17 +9,86 @@
         android:id="@+id/navigation_home"
         android:name="com.example.intellicareer.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_newsDetailsFragment"
+            app:destination="@id/navigation_news_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_explore"
+        android:name="com.example.intellicareer.ui.explore.ExploreFragment"
+        android:label="@string/title_explore"
+        tools:layout="@layout/fragment_explore" >
+    <action
+        android:id="@+id/action_exploreFragment_to_jobDetailsFragment"
+        app:destination="@id/navigation_job_details" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.intellicareer.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashFragment_to_publishJobFragment"
+            app:destination="@id/navigation_publish_job" />
+        <action
+            android:id="@+id/action_dashFragment_to_evaluationFragment"
+            app:destination="@id/navigation_evaluation" />
+        <action
+            android:id="@+id/action_dashFragment_to_recruitFragment"
+            app:destination="@id/navigation_recruit" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.intellicareer.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_news_details"
+        android:name="com.example.intellicareer.ui.home.NewsDetailsFragment"
+        android:label="News Details"
+        tools:layout="@layout/fragment_news_details"
+    />
+
+    <fragment
+        android:id="@+id/navigation_publish_job"
+        android:name="com.example.intellicareer.ui.dashboard.PublishJobFragment"
+        android:label="Publish Job"
+        tools:layout="@layout/fragment_publish_job">
+    <action
+        android:id="@+id/action_publishJobFragment_to_dashFragment"
+        app:destination="@id/navigation_dashboard" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_job_details"
+        android:name="com.example.intellicareer.ui.explore.JobDetailsFragment"
+        android:label="Job Details"
+        tools:layout="@layout/fragment_job_details">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_evaluation"
+        android:name="com.example.intellicareer.ui.dashboard.EvaluationFragment"
+        android:label="CV Evaluation"
+        tools:layout="@layout/fragment_evaluation"
+        />
+
+    <fragment
+        android:id="@+id/navigation_recruit"
+        android:name="com.example.intellicareer.ui.dashboard.RecruitFragment"
+        android:label="Recruit"
+        tools:layout="@layout/fragment_recruit">
+    <action
+        android:id="@+id/action_recruitFragment_to_employerDetailsFragment"
+        app:destination="@id/navigation_employee_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_employee_details"
+        android:name="com.example.intellicareer.ui.dashboard.EmployeeDetailsFragment"
+        android:label="Employer Details"
+        tools:layout="@layout/fragment_employee_details">
+    <action
+        android:id="@+id/action_employeeDetailsFragment_to_recruitFragment"
+        app:destination="@id/navigation_recruit" />
+    </fragment>
 </navigation>

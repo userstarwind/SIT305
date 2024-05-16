@@ -56,7 +56,7 @@ public class RelatedStoryRecyclerViewAdapter extends RecyclerView.Adapter<Relate
         ImageView relatedNewsImageView;
         public ViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            relatedNewsTitleTextView=itemView.findViewById(R.id.relatedNewsContentTextView);
+            relatedNewsTitleTextView=itemView.findViewById(R.id.relatedNewsTitleTextView);
             relatedNewsContentTextView=itemView.findViewById(R.id.relatedNewsContentTextView);
             relatedNewsImageView=itemView.findViewById(R.id.relatedNewsImageView);
             itemView.setOnClickListener(v -> {
